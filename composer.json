@@ -1,0 +1,44 @@
+{
+  "name": "bytic/facebook-plugins",
+  "type": "library",
+  "license": "MIT",
+  "description": "html helpers for bytic framework Edit",
+  "keywords": [  ],
+  "homepage": "https://github.com/bytic/facebook-plugins",
+  "authors": [
+    {
+      "name": "Gabriel Solomon",
+      "email": "hello@gabrielsolomon.ro"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ByTIC\\FacebookPlugins\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ByTIC\\FacebookPlugins\\Tests\\": "tests/src"
+    }
+  },
+  "require": {
+    "php": "^7.4|^8.0",
+    "bytic/utility": "^1.0",
+    "bytic/html-helpers": "^1.0"
+  },
+  "require-dev": {
+    "bytic/phpqatools": "^1.0"
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "captainhook/plugin-composer": true,
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true,
+      "ramsey/composer-repl": true,
+      "bytic/phpqatools": true
+    }
+  }
+}

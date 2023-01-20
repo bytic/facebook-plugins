@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ByTIC\FacebookPlugins\AbstractPlugin;
+
+abstract class AbstractPlugin
+{
+
+}

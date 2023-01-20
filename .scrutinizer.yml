@@ -1,0 +1,15 @@
+checks:
+    php:
+        code_rating: true
+        duplication: true
+build:
+    environment:
+        php: '8.2'
+tools:
+    php_code_coverage:
+        enabled: true
+    php_code_sniffer:
+        config:
+            standard: "PSR12"
+    external_code_coverage:
+        timeout: 600
