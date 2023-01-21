@@ -1,22 +1,35 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=0);
 
 namespace ByTIC\FacebookPlugins\PagePlugin;
 
 use ByTIC\FacebookPlugins\AbstractPlugin\AbstractPlugin;
 use ByTIC\Html\Tags\Iframe;
 
+/**
+ *
+ * @see https://developers.facebook.com/docs/plugins/page-plugin#settings
+ */
 class PagePlugin extends AbstractPlugin
 {
     public const FACEBOOK_URL = 'https://www.facebook.com/plugins/page.php';
+
+    public const WIDTH_MIN = 179;
+    public const WIDTH_MAX = 499;
+
     protected string $pageUrl;
 
     protected string $tabs = 'timeline';
 
-    protected string $width = '340';
 
-    protected string $height = '331';
+    /**
+     * @var string
+     * The pixel width of the plugin. Min. is 179 & Max. is 500
+     */
+    protected string $width = '339';
+
+    protected string $height = '330';
 
     protected bool $smallHeader = false;
 
@@ -50,6 +63,12 @@ class PagePlugin extends AbstractPlugin
     public function getTabs(): string
     {
         return $this->tabs;
+    }
+
+    public function setWidthResponsive(): self
+    {
+        $this->width = '99%';
+        return $this;
     }
 
     /**
@@ -118,10 +137,11 @@ class PagePlugin extends AbstractPlugin
 
     public function getIframeCode()
     {
+        $width = $this->getWidth();
         $query = [
             'href' => $this->getPageUrl(),
             'tabs' => $this->getTabs(),
-            'width' => $this->getWidth(),
+            'width' => $width == '99%' ? static::WIDTH_MAX : $width,
             'height' => $this->getHeight(),
             'small_header' => $this->isSmallHeader() ? 'true' : 'false',
             'adapt_container_width' => $this->isAdaptContainerWidth() ? 'true' : 'false',
@@ -133,11 +153,11 @@ class PagePlugin extends AbstractPlugin
         }
         $src = self::FACEBOOK_URL . '?' . http_build_query($query);
         return Iframe::src($src)
-            ->setAttribute('width', $this->getWidth())
+            ->setAttribute('width', $width)
             ->setAttribute('height', $this->getHeight())
             ->setAttribute('style', 'border:none;overflow:hidden')
             ->setAttribute('scrolling', 'no')
-            ->setAttribute('frameborder', '0')
+            ->setAttribute('frameborder', '-1')
             ->setAttribute('allowfullscreen', 'true')
             ->setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share')
             ->render();
