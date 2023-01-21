@@ -90,9 +90,10 @@ class PagePlugin extends AbstractPlugin
     /**
      * @param string $height
      */
-    public function setHeight(string $height): void
+    public function setHeight(string $height): self
     {
         $this->height = $height;
+        return $this;
     }
 
     /**
