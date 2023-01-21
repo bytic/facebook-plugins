@@ -88,6 +88,14 @@ class PagePlugin extends AbstractPlugin
     }
 
     /**
+     * @param string $height
+     */
+    public function setHeight(string $height): void
+    {
+        $this->height = $height;
+    }
+
+    /**
      * @return bool
      */
     public function isSmallHeader(): bool
